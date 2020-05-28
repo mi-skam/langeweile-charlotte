@@ -34,13 +34,17 @@ app.get("/", (request, response) => {
 
 // send the default array of dreams to the webpage
 app.get("/eintraege", (request, response) => {
-  // express helps us take JS objects and send them as JSON
-  response.json(dreams);
   db.all(
     'SELECT * from Langeweile', (err, rows) => {
       response.send(JSON.stringify(rows))
     })
 });
+
+app.post("/eintrag", (request, response) => {
+  console.log("add to Einträge " + request.body.eintrag)
+  
+  const cleansedEintrag = cleanseString(request.body.eintrag)
+})
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
