@@ -10,6 +10,12 @@ const app = express();
 const dreams = [
 ];
 
+// init the sqlite
+const fs = require('fs');
+const dbFile = __dirname + "/sqlite.db";
+const exists = 
+
+
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
