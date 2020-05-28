@@ -12,9 +12,21 @@ const dreams = [
 
 // init the sqlite
 const fs = require('fs');
-const dbFile = __dirname + "/sqlite.db";
-const exists = 
+const sqlite3 = require('sqlite3').verbose()
 
+const dbFile = __dirname + "/sqlite.db";
+const exists = fs.existsSync(dbFile)
+const db = new sqlite3.Database(dbFile);
+
+// if $dbFile doesn't exist, create it, otherwise print records to console
+db.serialize(() => {
+  if (!exists){
+    db.run('CREATE TABLE Langeweile (PersonID INTEGER PRIMARY KEY, Name TEXT, Eintrag TEXT)')
+    console.log('Table Langeweile created.')
+  } else {
+    console.log('Table Langeweile exists.')
+  }
+})
 
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
