@@ -15,12 +15,19 @@ const db = new sqlite3.Database(dbFile);
 db.serialize(() => {
   if (!exists){
     db.run(
-      "CREATE TABLE langeweile (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOTNULL, eintrag TEXT NOTNULL)"
+      "CREATE TABLE langeweile (id INTEGER PRIMARY KEY, name TEXT, eintrag TEXT)"
     );
     console.log('Table langeweile created.');
   } else {
     console.log('Table langeweile exists.');
   }
+  
+  const stmt = db.prepare("INSERT INTO langeweile (id, name, eintrag) VALUES (NULL, ?, ?)");
+  stmt.run(0, "maksim", "hello db");
+  stmt.finalize();
+  
+  
 })
 
-const stmt = db.prepare("INSERT INTO langeweile VALUES (?, ?)");
+db.close()
+
