@@ -46,7 +46,12 @@ app.post("/eintrag", (request, response) => {
     text: cleanseString(request.body.text)
   }
   db.run(
-    'INSERT into Langeweile (name, text) VALUES (?)', )
+    `INSERT into Langeweile (name, text) VALUES (${entry.name}, ${entry.text})`, (err) => {
+      if (err) {
+        response.send({ message: "error!" });
+      } else {
+        response.send({ message: "success" });
+      }})
   return response.send(entry)
 })
 
