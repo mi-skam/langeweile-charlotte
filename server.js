@@ -15,51 +15,12 @@ const db = new sqlite3.Database(dbFile);
 db.serialize(() => {
   if (!exists){
     db.run(
-      'CREATE TABLE Langeweile (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOTNULL, eintrag TEXT NOTNULL)'
+      "CREATE TABLE langeweile (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOTNULL, eintrag TEXT NOTNULL)"
     );
-    console.log('Table Langeweile created.')
+    console.log('Table langeweile created.');
   } else {
-    console.log('Table Langeweile exists.')
+    console.log('Table langeweile exists.');
   }
 })
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(express.static("public"));
-
-// https://expressjs.com/en/starter/basic-routing.html
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/views/index.html");
-});
-
-// send the default array of dreams to the webpage
-app.get("/eintraege", (request, response) => {
-  db.all(
-    'SELECT * from Langeweile', (err, rows) => {
-      response.send(JSON.stringify(rows))
-    })
-});
-
-app.post("/eintrag", (request, response) => {
-  const entry = {
-    name: cleanseString(request.body.name),
-    text: cleanseString(request.body.text)
-  }
-  db.run(
-    `INSERT into Langeweile VALUES (?, ?)`,[entry.name, entry.text], (err) => {
-      if (err) {
-        response.send({ message: "error!" });
-      } else {
-        response.send({ message: "success" });
-      }})
-})
-
-// listen for requests :)
-const listener = app.listen(process.env.PORT, () => {
-  console.log("Your app is listening on port " + listener.address().port);
-});
-
-// helper function that prevents html/css/script malice
-const cleanseString = function(string) {
-  return string.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-};
+const stmt = db.prepare("INSERT INTO langeweile VALUES (?, ?)");
