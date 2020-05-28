@@ -41,6 +41,10 @@ app.get("/eintraege", (request, response) => {
 });
 
 app.post("/eintrag", (request, response) => {
+  const entry = {
+    name: request.body.name,
+    text: request.body.text
+  }
   console.log("add to Einträge " + request.body.eintrag)
   
   const cleansedEintrag = cleanseString(request.body.eintrag)
