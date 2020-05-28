@@ -1,35 +1,30 @@
 // server.js
 // where your node app starts
 
-// we've started you off with Express (https://expressjs.com/)
-// but feel free to use whatever libraries or frameworks you'd like through `package.json`.
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
-
-// our default array of dreams
-const dreams = [
-];
-
-// init the sqlite
 const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose()
 
-const dbFile = __dirname + "/sqlite.db";
+const dbFile = "./.data/sqlite.db";
 const exists = fs.existsSync(dbFile)
 const db = new sqlite3.Database(dbFile);
 
 // if $dbFile doesn't exist, create it, otherwise print records to console
 db.serialize(() => {
   if (!exists){
-    db.run('CREATE TABLE Langeweile (PersonID INTEGER PRIMARY KEY, Name TEXT, Eintrag TEXT)')
+    db.run(
+      'CREATE TABLE Langeweile (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, eintrag TEXT)'
+    );
     console.log('Table Langeweile created.')
   } else {
     console.log('Table Langeweile exists.')
   }
 })
 
-// make all the files in 'public' available
-// https://expressjs.com/en/starter/static-files.html
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // https://expressjs.com/en/starter/basic-routing.html
