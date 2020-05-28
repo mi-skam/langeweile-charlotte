@@ -20,21 +20,18 @@ db.serialize(() => {
     console.log('Table langeweile created.');
   } else {
     console.log('Table langeweile exists.');
-  }
-  
-  //const stmt = db.prepare("INSERT INTO langeweile (id, name, eintrag) VALUES (NULL, ?, ?)");
-  //stmt.run("maksim", "hello db2");
-  //stmt.finalize();
-  
-  
+  }  
 })
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
+app.get("/", (request, response) => {
+  response.sendFile(`${__dirname}/views/index.html`);
+});
+
 app.get("/eintraege", (request, response) => {
-  console.log(request)
   db.all(
     'SELECT * from langeweile', (err, rows) => {
       if (err){
@@ -42,6 +39,41 @@ app.get("/eintraege", (request, response) => {
       }
       response.send(JSON.stringify(rows))
     })
+});
+
+app.post("/eintrag", (request, response) => {
+  const entry = {
+    name: cleanseString(request.body.name),
+    text: cleanseString(request.body.eintrag)
+  }
+  db.run(
+    'INSERT into langeweile(id, name, eintrag) VALUES (NULL, ?, ?)',[entry.name, entry.text], (err) => {
+      if (err) {
+        response.send({ message: "error!" });
+      } else {
+        response.send({ message: "success" });
+      }})
+})
+
+app.get("/eintraege-entfernen", (request, response) => {
+    db.each(
+      "SELECT * from langeweile",
+      (err, row) => {
+        console.log("row", row);
+        db.run(`DELETE FROM langeweile WHERE ID=?`, row.id, error => {
+          if (row) {
+            console.log(`deleted row ${row.id}`);
+          }
+        });
+      },
+      err => {
+        if (err) {
+          response.send({ message: "error!" });
+        } else {
+          response.send({ message: "success" });
+        }
+      }
+    );
 });
 
 
