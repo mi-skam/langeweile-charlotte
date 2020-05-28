@@ -42,9 +42,11 @@ app.get("/eintraege", (request, response) => {
 
 app.post("/eintrag", (request, response) => {
   const entry = {
-    name: request.body.name,
-    text: request.body.text
+    name: cleanseString(request.body.name),
+    text: cleanseString(request.body.text)
   }
+  db.run(
+    'INSERT into Langeweile (name, text) VALUES (?)', )
   return response.send(entry)
 })
 
