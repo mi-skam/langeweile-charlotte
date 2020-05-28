@@ -8,14 +8,14 @@ const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose()
 
 const dbFile = "./.data/sqlite.db";
-const exists = fs.existsSync(dbFile)
+const exists = fs.existsSync(dbFile);
 const db = new sqlite3.Database(dbFile);
 
 // if $dbFile doesn't exist, create it, otherwise print records to console
 db.serialize(() => {
   if (!exists){
     db.run(
-      'CREATE TABLE Langeweile (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, eintrag TEXT)'
+      'CREATE TABLE Langeweile (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOTNULL, eintrag TEXT NOTNULL)'
     );
     console.log('Table Langeweile created.')
   } else {
