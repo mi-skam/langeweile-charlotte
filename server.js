@@ -45,9 +45,7 @@ app.post("/eintrag", (request, response) => {
     name: request.body.name,
     text: request.body.text
   }
-  console.log("add to Einträge " + request.body.eintrag)
-  
-  const cleansedEintrag = cleanseString(request.body.eintrag)
+  return entry
 })
 
 // listen for requests :)
