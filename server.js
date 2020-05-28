@@ -22,12 +22,36 @@ db.serialize(() => {
     console.log('Table langeweile exists.');
   }
   
-  const stmt = db.prepare("INSERT INTO langeweile (id, name, eintrag) VALUES (NULL, ?, ?)");
-  stmt.run(0, "maksim", "hello db");
-  stmt.finalize();
+  //const stmt = db.prepare("INSERT INTO langeweile (id, name, eintrag) VALUES (NULL, ?, ?)");
+  //stmt.run("maksim", "hello db2");
+  //stmt.finalize();
   
   
 })
 
-db.close()
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static("public"));
+
+app.get("/eintraege", (request, response) => {
+  console.log(request)
+  db.all(
+    'SELECT * from langeweile', (err, rows) => {
+      if (err){
+        console.log(err)
+      }
+      response.send(JSON.stringify(rows))
+    })
+});
+
+
+// helper function that prevents html/css/script malice
+const cleanseString = function(string) {
+  return string.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+};
+
+// listen for requests :)
+const listener = app.listen(process.env.PORT, () => {
+  console.log("Your app is listening on port " + listener.address().port);
+});
 
