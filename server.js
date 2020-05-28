@@ -33,9 +33,13 @@ app.get("/", (request, response) => {
 });
 
 // send the default array of dreams to the webpage
-app.get("/dreams", (request, response) => {
+app.get("/eintraege", (request, response) => {
   // express helps us take JS objects and send them as JSON
   response.json(dreams);
+  db.all(
+    'SELECT * from Langeweile', (err, rows) => {
+      response.send(JSON.stringify(rows))
+    })
 });
 
 // listen for requests :)
