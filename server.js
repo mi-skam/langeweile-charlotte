@@ -45,10 +45,15 @@ app.post("/eintrag", (request, response) => {
     name: request.body.name,
     text: request.body.text
   }
-  return entry
+  return response.send(entry)
 })
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
+
+// helper function that prevents html/css/script malice
+const cleanseString = function(string) {
+  return string.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+};
