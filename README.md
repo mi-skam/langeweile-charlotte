@@ -1,6 +1,6 @@
-# How to Use
-`npm install`
-`npm start`
+# How to Use (in the Shell)
+1. `npm install`
+2. `npm start`
 
 # hello-express
 
