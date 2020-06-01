@@ -1,3 +1,7 @@
+# How to Use (in the Shell)
+1. `npm install`
+2. `npm start`
+
 # hello-express
 
 A server that serves a webpage, its resources, and some data
