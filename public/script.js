@@ -12,10 +12,10 @@ function neuenEintragHinzufuegen(eintrag) {
   const entryItem = document.createElement("p");
   const nameItem = document.createElement("p");
 
-  entryItem.innerHTML = eintrag.eintrag;
   nameItem.innerHTML = eintrag.name;
-  newDivItem.append(entryItem);
-  newDivItem.append(nameItem);
+  entryItem.innerHTML = eintrag.eintrag;
+  newDivItem.appendChild(nameItem);
+  newDivItem.appendChild(entryItem);
 
   eintraegeListe.insertAdjacentElement('afterbegin', newDivItem)
 }

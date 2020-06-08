@@ -86,6 +86,6 @@ const cleanseString = function (string) {
 };
 
 // listen for requests :)
-const listener = app.listen(process.env.PORT, () => {
-  console.log("Your app is listening on port " + listener.address().port);
+const listener = app.listen(process.env.PORT || 46793, () => {
+  console.log("Your app is running on http://localhost:" + listener.address().port);
 });
