@@ -9,13 +9,13 @@ FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-12
 
 # ** [Optional] Uncomment this section to install additional packages. **
 #
-# ENV DEBIAN_FRONTEND=noninteractive
-# RUN apt-get update \
-#    && apt-get -y install --no-install-recommends <your-package-list-here> \
-#    #
-#    # Clean up
-#    && apt-get autoremove -y \
-#    && apt-get clean -y \
-#    && rm -rf /var/lib/apt/lists/*
-# ENV DEBIAN_FRONTEND=dialog
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+   && (curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash) \
+   && apt-get -y install --no-install-recommends git-lfs \
 
+   # Clean up
+   && apt-get autoremove -y \
+   && apt-get clean -y \
+   && rm -rf /var/lib/apt/lists/*
+ENV DEBIAN_FRONTEND=dialog
