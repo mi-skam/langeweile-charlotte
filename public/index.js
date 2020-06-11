@@ -1,3 +1,14 @@
+// Cookie Consent
+
+$(document).ready(function(){   
+    setTimeout(function () {
+        $("#cookieConsent").fadeIn(200);
+     }, 400);
+    $("#closeCookieConsent, .cookieConsentOK").click(function() {
+        $("#cookieConsent").fadeOut(200);
+    }); 
+}); 
+
 // Start Section: when first loaded, after button clicked = hidden
 
 function setCookie(cname, cvalue) {

@@ -11,10 +11,13 @@ function neuenEintragHinzufuegen(eintrag) {
   newDivItem.classList.add("mySlides", "fade");
   const entryItem = document.createElement("p");
   const nameItem = document.createElement("p");
+  const trenner = document.createElement("hr");
+  nameItem.classList.add("quote");
 
   nameItem.innerHTML = eintrag.name;
   entryItem.innerHTML = eintrag.eintrag;
   newDivItem.appendChild(nameItem);
+  newDivItem.appendChild(trenner)
   newDivItem.appendChild(entryItem);
 
   eintraegeListe.insertAdjacentElement('afterbegin', newDivItem)
