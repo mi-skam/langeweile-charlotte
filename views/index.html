@@ -19,6 +19,14 @@
 <body onload="checkCookie()">
     <header></header>
 
+    <!-- Cookie Consent -->
+    <div id="cookieConsent">
+        <div id="closeCookieConsent">x</div>
+        Diese Webseite verwendet Cookies. Durch die weitere Nutzung der Webseite stimmen Sie der Verwendung von
+        Cookies zu. <br> Weitere Informationen zu Cookies erhalten Sie in unserer <a href="#"
+            target="_blank">Datenschutzerklärung</a>. <a class="cookieConsentOK">That's Fine</a>
+    </div>
+
 
     <!-- Starter-Section -->
     <section id="start">
@@ -29,7 +37,8 @@
         <div class="form-container">
             <form method="POST" action="/eintrag">
                 <label for="textbox">Langeweile ist für mich...</label>
-                <input type="text" id="langeweile-antwort" maxlength="300" placeholder="Text" name="eintrag">
+                <input type="text" id="langeweile-antwort" maxlength="150" placeholder="Text (max. 150 Zeichen)"
+                    name="eintrag">
 
                 <label for="name">Dein Name:</label>
                 <input type="text" id="name" maxlength="50" placeholder="Dein Name..." name="name">
@@ -44,21 +53,20 @@
     <main id="main">
         <!-- Answers of starter-Section as carousel -->
         <section id="answers">
-            <div class="slideshow">
+            <h4>lange<br>weile<br> <span> ist für mich...</span></h4>
+            <div class="slideshow answer-box">
                 <div class="mySlides fade">
-                    <p>Langeweile ist für mich Lorem ipsum picsum barumku sli dkjalkcneu.</p>
-                    <p>nafate pempu</p>
-                </div>
-                <!--
-                <div class="mySlides fade">
-                    <p>Lorem ipsum picsum barumku sli dkjalkcneu.</p>
-                    <p>kaulo mini</p>
+                    <p class="quote">, wenn die Zeit einfach nicht vergehen will und träge dahin fließt.</p>
+                    <hr>
+                    <p>Jane Pink</p>
                 </div>
 
                 <div class="mySlides fade">
-                    <p>Langeweile ist für mich Lorem ipsum picsum barumku sli dkjalkcneu.</p>
-                    <p>sifor jaku</p>
-                </div> -->
+                    <p class="quote">Ruhe und Zeit für die Details finden. Es gibt so vieles zu entdecken, wenn
+                        Langeweile es herausfordert.</p>
+                    <hr>
+                    <p>Lana</p>
+                </div>
 
                 <!-- Next and previous buttons -->
                 <a class="prev answer" onclick="plusDivs(-1, 0)">&#10094;</a>
@@ -66,19 +74,35 @@
             </div>
         </section>
 
-        <hr>
-
         <!-- Content starts here -->
 
-        <div class="flipcard">
-            <div class="flipcard-inner">
-                <div class="flipcard-front">
-                    <h4>L</h4>
+        <div class="row">
+            <div class="flipcard">
+                <div class="flipcard-inner">
+                    <div class="flipcard-front">
+                        <h4>L</h4>
+                    </div>
+                    <div class="flipcard-back">
+                        <h3>Über die Ausstellung</h3>
+                        <p class="author">Charlotte Blume</p>
+                        <button id="anfang" onclick="overlayOn(this.id)" class="card-button" type="button">Show</button>
+                    </div>
                 </div>
-                <div class="flipcard-back">
-                    <h3>Über die Ausstellung</h3>
-                    <p class="author">Charlotte Blume</p>
-                    <button id="anfang" onclick="overlayOn(this.id)" class="card-button" type="button">Show</button>
+            </div>
+
+            <div class="flipcard">
+                <div class="flipcard-inner">
+                    <div class="flipcard-front">
+                        <h4>A</h4>
+                    </div>
+                    <div class="flipcard-back">
+                        <h3>Inspiration</h3>
+                        <p class="short-text">Der Podcast, welcher mich zum Nachdenken zu diesem Thema anregte, ist aus
+                            der Reihe 'Freistil' des Deutschlandfunk.</p>
+                        <button class="card-button no-position" type="button"> <a class="podcast-link" target="_blank"
+                                href="https://www.deutschlandfunkkultur.de/was-wurde-aus-der-langeweile-nichts-los.3691.de.html?dram:article_id=450056">Zum
+                                Podcast</a> </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -103,7 +127,7 @@
                 <div class="flipcard">
                     <div class="flipcard-inner">
                         <div class="flipcard-front">
-                            <h4>A</h4>
+                            <h4>N</h4>
                         </div>
                         <div class="flipcard-back">
                             <h3>Das Langeweile-Gedicht</h3>
@@ -117,7 +141,7 @@
                 <div class="flipcard">
                     <div class="flipcard-inner">
                         <div class="flipcard-front">
-                            <h4>N</h4>
+                            <h4>G</h4>
                         </div>
                         <div class="flipcard-back">
                             <h3 class="long-title">Auch die Fans sind Geisterspiel-Gewinner</h3>
@@ -163,7 +187,7 @@
                 <div class="flipcard">
                     <div class="flipcard-inner">
                         <div class="flipcard-front">
-                            <h4>G</h4>
+                            <h4>W</h4>
                         </div>
                         <div class="flipcard-back">
                             <h3 class="short-title">Eating</h3>
@@ -191,13 +215,6 @@
             </div>
         </section>
 
-        <!-- <section class="extra-content">
-            <div>
-                <h3 class="light">Langeweile im Museum?</h3>
-                <p>Im dänischen Nationalmuseum wurden im März 2018 "Boredom-Buttons" installiert, um das Museum vor
-                    allem für Kinder attraktiver zu machen.</p>
-            </div>
-        </section> -->
 
         <section>
             <div class="row">
@@ -220,12 +237,27 @@
                 <div class="flipcard">
                     <div class="flipcard-inner">
                         <div class="flipcard-front">
-                            <h4>W</h4>
+                            <h4>I</h4>
                         </div>
                         <div class="flipcard-back">
                             <h3 class="short-title">Rastlosigkeit</h3>
                             <p class="author">Charlotte Blume</p>
                             <button id="rastlos" onclick="overlayOn(this.id)" class="card-button"
+                                type="button">Show</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flipcard">
+                    <div class="flipcard-inner">
+                        <div class="flipcard-front">
+                            <h4>L</h4>
+                        </div>
+                        <div class="flipcard-back">
+                            <p class="short-text">Wenn es um Langeweile geht, geht es häufig um Ablenkung von ihr. Als
+                                könnten wir in keinem Fall nichts tun, bei so vielen Möglichkeiten, die wir haben,
+                                hangeln wir uns von Inhalt zu Inhalt.</p>
+                            <button id="rastlos-text" onclick="overlayOn(this.id)" class="card-button no-position"
                                 type="button">Show</button>
                         </div>
                     </div>
@@ -242,7 +274,7 @@
                     what's on the other side of boredom. (...)
                     Once you learn to meditate you realize that boredom ist simply a failure to pay attention.
                     If something as simply and repetitive as breathing can become a source of blissfull contemplation -
-                    and it can. And if the feeling of boredomitself can become an object of intense interest - and it
+                    and it can. And if the feeling of boredom itself can become an object of intense interest - and it
                     can. There's no way to be bored if you're paying close attention to your experiences!&#8220;</p>
                 <a class="quote" target="_blank" href="https://www.facebook.com/Samharrisorg/videos/266322587716507/"
                     type="button">🖝 Sam Harris: The Cure For Boredom 🎧</a>
@@ -282,6 +314,8 @@
 
         <!-- Overlay Content here -->
         <div id="overlay-anfang" class="overlay" onclick="overlayOff(this.id)">
+            <a href="javascript:void(0)" class="closebtn" onclick="overlayOff('overlay-anfang')">&times;</a>
+
             <div class="overlay-content text">
                 <p>
                     Am Ende meines Studiums "Kultur-und Medienpädagogik" kann und soll jede:r Studierende als
@@ -323,6 +357,9 @@
 
 
         <div id="overlay-gedicht" class="overlay" onclick="overlayOff(this.id)">
+
+            <a href="javascript:void(0)" class="closebtn" onclick="overlayOff('overlay-gedicht')">&times;</a>
+
             <div class="overlay-content gedicht">
                 <p>
                     Was ist es, diese Langeweile? <br>
@@ -354,10 +391,10 @@
 
         <div id="overlay-geisterspiel" class="overlay"">
 
-            <a href=" javascript:void(0)" class="closebtn" onclick="overlayOff('overlay-geisterspiel')">&times;</a>
+            <a href="javascript:void(0)" class="closebtn" onclick="overlayOff('overlay-geisterspiel')">&times;</a>
 
             <div class="overlay-content video-style">
-                <video id="video" controls width="100%" src="/assets/geisterspiel.mp4"></video>
+                <video id="video" controls width="90%" src="/assets/geisterspiel.mp4"></video>
             </div>
         </div>
 
@@ -375,6 +412,7 @@
         </div>
 
         <div id="overlay-eating-text" class="overlay" onclick="overlayOff(this.id)">
+            <a href="javascript:void(0)" class="closebtn" onclick="overlayOff('overlay-eating-text')">&times;</a>
 
             <div class="overlay-content text">
                 <p>Ich schicke dir für dein Projekt ein paar Bilder die im Lockdown entstanden sind.
@@ -391,7 +429,7 @@
             <a href=" javascript:void(0)" class="closebtn" onclick="overlayOff('overlay-rastlos')">&times;</a>
 
             <div class="overlay-content video-style">
-                <video id="video2" controls width="100%" src="/assets/rastlos.webm"></video>
+                <video id="video2" controls width="90%" src="/assets/rastlos.webm"></video>
             </div>
         </div>
 
@@ -417,19 +455,9 @@
 
     <footer>
 
-        <!-- <div id="impressum" onclick="overlayOn(this.id)">
-            <p>Impressum</p>
-        </div>
-        <div>
-            <p>Alle Inhalte und Werke auf dieser Webseite sind lizenziert unter</p>
-                <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
-                    <img alt="Creative Commons Lizenzvertrag" style="border-width:0"
-                        src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png">
-                </a>
-        </div> -->
-
         <ul>
             <li id="impressum" onclick="overlayOn(this.id)">Impressum</li>
+            <li id="datenschutz" onclick="overlayOn(this.id)">Datenschutz</li>
             <li>
                 Alle Inhalte und Werke auf dieser Webseite sind lizenziert unter
             </li>
@@ -439,9 +467,12 @@
                         src=" /assets/cc-by-nc-nd.png">
                 </a>
             </li>
+
         </ul>
 
         <div id="overlay-impressum" class="overlay" onclick="overlayOff(this.id)">
+            <a href="javascript:void(0)" class="closebtn" onclick="overlayOff('overlay-impressum')">&times;</a>
+
             <div class="overlay-content impressum">
                 <h1>Impressum</h1>
                 <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
@@ -473,8 +504,7 @@
                     erkennbar.</p>
                 <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete
                     Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden
-                    wir
-                    derartige Links umgehend entfernen.</p>
+                    wir derartige Links umgehend entfernen.</p>
                 <h3>Urheberrecht</h3>
                 <p>Die durch die Seitenbetreiber erstellten
                     Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die
@@ -482,32 +512,93 @@
                     Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes
                     bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und
                     Kopien dieser
-                    Seite sind nur f&uuml;r den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+                    Seite sind nur f&uuml;r den privaten, nicht kommerziellen Gebrauch gestattet. Weitere Infos hierzu
+                    finden Sie hier:</p>
+                <a class="e-recht" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
                 <p>Soweit die Inhalte auf dieser
                     Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere
                     werden
                     Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung
                     aufmerksam
                     werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden
-                    wir
-                    derartige Inhalte umgehend entfernen.</p>
+                    wir derartige Inhalte umgehend entfernen.</p>
                 <p class="e-recht">Quelle: <a
                         href="https://www.e-recht24.de/impressum-generator.html">https://www.e-recht24.de/impressum-
                         generator.html</a></p>
             </div>
         </div>
 
-        <!-- <div id="overlay-lizenzen" class="overlay" onclick="overlayOff(this.id)">
-            <div class="overlay-content lizenzen">
-                <h1>Lizenzen</h1>
-                <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img
-                            alt="Creative Commons Lizenzvertrag" style="border-width:0"
-                            src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Alle Inhalte und
-                    Werke auf dieser Webseite sind lizenziert unter einer <a rel="license"
-                        href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Namensnennung - Nicht
-                        kommerziell - Keine Bearbeitungen 4.0 International Lizenz</a>.</p>
+        <div id="overlay-datenschutz" class="overlay" onclick="overlayOff(this.id)">
+            <a href="javascript:void(0)" class="closebtn" onclick="overlayOff('overlay-datenschutz')">&times;</a>
+
+            <div class="overlay-content impressum">
+                <h1>Datenschutzerklärung</h1>
+                <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
+                <img src="/assets/adresse_img.png" alt="Adresse">
+                <h2>Kontakt</h2>
+                <img src="/assets/email-img.png" alt="E-Mail">
+                <h3>Grundlegendes</h3>
+                <p>Die Websitebetreiberin Charlotte Blume nimmt Ihren Datenschutz sehr ernst. Die Nutzung dieser
+                    Webseite ist ohne jede Angabe personenbezogener Daten möglich.
+                    <br>
+                    Da durch neue Technologien und die
+                    ständige Weiterentwicklung dieser Webseite Änderungen an dieser Datenschutzerklärung vorgenommen
+                    werden können, empfehlen wir Ihnen sich die Datenschutzerklärung in regelmäßigen Abständen wieder
+                    durchzulesen.
+                    <br>
+                    Definitionen der verwendeten Begriffe (z.B. “personenbezogene Daten” oder “Verarbeitung”) finden Sie
+                    in Art. 4 DSGVO.</p>
+                <h3>Datenerhebung personenbezogener Daten</h3>
+                <p>Bei der Nutzung unserer Webseiten erheben wir keine personenbezogenen Daten. Bei jedem Zugriff auf
+                    unsere Webseiten und beim Abruf einer Datei werden bei diesem Vorgang Daten zu statistischen Zwecken
+                    in einer Protokolldatei gespeichert.</p>
+                <ul> Gespeichert werden in Log-Dateien:
+
+                    <li> Zeitstempel</li>
+                    <li> die öffentliche IP Adresse</li>
+                </ul>
+                <p>
+                    Aus diesen Daten ist kein Rückschluss auf eine bestimmte Person möglich. Diese Informationen werden
+                    benötigt, um die Inhalte der Webseiten korrekt anzubieten, die Inhalte der Webseiten zu optimieren
+                    und die Funktionsfähigkeit unserer Webseiten zu gewährleisten. Diese anonym erhobenen Daten und
+                    Informationen werden nur zu statistischen Zwecken ausgewertet. Die Daten und Informationen sind
+                    Dritten nicht zugänglich.</p>
+                <h3>Verwendung von Cookies</h3>
+                <p>Bei Verwendung von Cookies auf unseren Serviceportalen wird der Nutzer an entsprechender Stelle auf
+                    die Nutzung von Cookies hingewiesen.
+                    Für die Nutzung des ersten Formulars wird ein Cookie gesetzt, welcher die weitere Nutzung der
+                    Webseite ermöglicht sowei bei erneuten Besuchen der Webseite, dieses formular nicht erneut anzeigt.
+                    Die in dem Cookie gespeicherten Daten zeigen lediglich an, dass die Seite besucht wurde. Es gibt
+                    keine Verwertung von Zeitstempeln, personenbezogenen Daten und Adressen o.Ä.
+                    Durch löschen des Cookies im Nachhinein in ihre Webbrowser wird bei einem erneuten Besuch der
+                    Webseite das
+                    Start-Formular erneut erscheinen.
+                    Nach Verlassen unserer Webseiten (beispielsweise über das Anklicken eines externen Links) können von
+                    der angeklickten Zielseite Cookies gesetzt werden. Für diese ist die Webseitenbetreiberin nicht
+                    verantwortlich.
+                </p>
+                <h3>Google Web Fonts</h3>
+                <p>Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Web Fonts, die von
+                    Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Web Fonts in
+                    ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen.
+
+                    Zu diesem Zweck muss der von Ihnen verwendete Browser Verbindung zu den Servern von Google
+                    aufnehmen. Hierdurch erlangt Google Kenntnis darüber, dass über Ihre IP-Adresse unsere Website
+                    aufgerufen wurde. Die Nutzung von Google Web Fonts erfolgt im Interesse einer einheitlichen und
+                    ansprechenden Darstellung unserer Online-Angebote. Dies stellt ein berechtigtes Interesse im Sinne
+                    von Art. 6 Abs. 1 lit. f DSGVO dar.
+
+                    Wenn Ihr Browser Web Fonts nicht unterstützt, wird eine Standardschrift von Ihrem Computer genutzt.
+
+                    Weitere Informationen zu Google Web Fonts finden Sie unter https://developers.google.com/fonts/faq
+                    und in der Datenschutzerklärung von Google: https://www.google.com/policies/privacy/.</p>
+                <h3>Heroku</h3>
+                <p>Diese Webseite wird auf europäischen Servern von heroku.com (a Salesforce company) gehostet.
+                    Informationen zu den Datenschutzerklärungen von Heroku finden Sie hier:</p>
+                <a class="e-recht" href="https://www.salesforce.com/company/privacy/">heroku.com Privacy Information</a>
             </div>
-        </div> -->
+        </div>
+
         <!-- weiterführende Links, Inspirationen, Thema...Podcasts zu Langeweile -->
     </footer>
 
